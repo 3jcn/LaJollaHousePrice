@@ -66,7 +66,7 @@ with modelTraining:
 	n_baths = para_col.selectbox('Number of full bathrooms:',options=[1,2,3,4,5,6,7,8],index=2)
 	n_half = para_col.selectbox('Number of 1.5-bathrooms:',options=[0,1,2,3,4],index=0)
 	
-	X=data[['area','beds','full_baths','half_baths']]
+	X=data[['area','beds','full_baths','1.5_baths']]
 	y=data['price']
 	# training set size = 80%  test size =20%
 	X_train, X_test, y_train, y_test = train_test_split(X,y,test_size=0.2)
