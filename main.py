@@ -48,8 +48,8 @@ with header:
 	st.image(image,use_column_width=True)
 
 with dataset:
-	st.header('La Jolla house price dataset')
-	st.text('I collect data for this project from online sites like Zillow, Redfin, Realtor, etc.')
+	st.header('La Jolla house price dataset Feb 2021')
+	st.text('Data from online sites like Zillow, Redfin, Realtor, etc.')
 	data = get_data('LaJolla-02-2021.csv')
 	# get NaN value
 	data = data.apply (pd.to_numeric, errors='coerce')
