@@ -73,7 +73,7 @@ with dataset:
 	
 with features:
 	st.header('The ML model: Multivariate Linear Regression')
-	st.markdown('* **Four features:** House area, number of bedrooms, number of full bathrooms, number of full and a half bathrooms')
+	st.markdown('* **Four features:** House area, number of bedrooms, number of full bathrooms, number of 1.5 bathrooms')
 
 with modelTraining:
 	st.header('Estimate the price for a house with the following selected features:')
