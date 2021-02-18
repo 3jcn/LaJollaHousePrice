@@ -1,9 +1,11 @@
 import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
+from PIL import Image
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import r2_score, mean_squared_error, mean_absolute_error 
 from sklearn.linear_model import LinearRegression
+
 
 header = st.beta_container()
 dataset = st.beta_container()
@@ -24,11 +26,26 @@ st.markdown("""
 def get_data(filename):
 	data = pd.read_csv(filename)
 	return data
+def img_to_bytes(img_path):
+    img_bytes = Path(img_path).read_bytes()
+    encoded = base64.b64encode(img_bytes).decode()
+    return encoded
 
 with header:
+	st.text('@Author: Thomas Nguyen Date: 15 Feb 2021')
 	st.title('Data science Project:')
-	st.header('Predict House Price in La Jolla, San Diego, CA')
-	st.text('ML multivariate linear regression  is used to predict La Jolla house price in Feb 2021')
+	#st.header('Predicting House Price in La Jolla, San Diego, CA')
+	html_temp = """
+	<div style="background-color:tomato; padding:10px">
+	<h2 style="color:white; text-align:center;">Predicting House Price in La Jolla, San Diego, CA</h2>
+	</div>
+	"""
+	st.markdown(html_temp,unsafe_allow_html=True)
+	st.text('La Jolla is a beautiful hilly, seaside neighborhood within the city of San Diego')
+	#html = f"<a href='{link}'><img src='data:image/png;base64,{image_base64}'></a>"
+	#st.markdown(html, unsafe_allow_html=True)
+	image = Image.open('lajolla.jpg')
+	st.image(image,use_column_width=True)
 
 with dataset:
 	st.header('La Jolla house price dataset')
@@ -48,15 +65,15 @@ with dataset:
 	x = data['area']
 	y = data['price']
 	fig, ax = plt.subplots()
-	ax.scatter(x,y)
+	ax.scatter(x,y,color='purple')
 	ax.set_xlabel('Area in sq ft')
 	ax.set_ylabel('Price in 10 millions')
 	st.subheader('House price vs. Area:')
-	st.pyplot(fig)
+	st.pyplot(fig,use_column_width=True)
 	
 with features:
 	st.header('The ML model: Multivariate Linear Regression')
-	st.markdown('* **Four features:** House area, number of bedrooms, number of full bathrooms, number of half bathrooms')
+	st.markdown('* **Four features:** House area, number of bedrooms, number of full bathrooms, number of full and a half bathrooms')
 
 with modelTraining:
 	st.header('Estimate the price for a house with the following selected features:')
