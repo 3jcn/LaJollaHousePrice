@@ -5,6 +5,8 @@ from PIL import Image
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import r2_score, mean_squared_error, mean_absolute_error 
 from sklearn.linear_model import LinearRegression
+# Import supplementary visualizations code visuals.py
+# import visuals as vs
 
 
 header = st.beta_container()
