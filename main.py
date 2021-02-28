@@ -5,8 +5,7 @@ from PIL import Image
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import r2_score, mean_squared_error, mean_absolute_error 
 from sklearn.linear_model import LinearRegression
-# Import supplementary visualizations code visuals.py
-# import visuals as vs
+from xgboost import XGBRegressor
 
 
 header = st.beta_container()
@@ -43,7 +42,7 @@ with header:
 	</div>
 	"""
 	st.markdown(html_temp,unsafe_allow_html=True)
-	st.text('La Jolla is a beautiful hilly, seaside neighborhood within the city of San Diego')
+	st.text('La Jolla is a beautiful hilly, seaside neighborhood within the city of San Diego. Do you wonder how much does it cost to live there?')
 	#html = f"<a href='{link}'><img src='data:image/png;base64,{image_base64}'></a>"
 	#st.markdown(html, unsafe_allow_html=True)
 	image = Image.open('lajolla.jpg')
@@ -55,7 +54,7 @@ with dataset:
 	data = get_data('LaJolla-02-2021.csv')
 	# get NaN value
 	data = data.apply (pd.to_numeric, errors='coerce')
-	# drop rows with NaN
+	# drop rows with NaN - since just few rows with missing data
 	data = data.dropna()
 	# reset index
 	data = data.reset_index(drop=True)
@@ -74,8 +73,9 @@ with dataset:
 	st.pyplot(fig,use_column_width=True)
 	
 with features:
-	st.header('The ML model: Multivariate Linear Regression')
-	st.markdown('* **Four features:** House area, number of bedrooms, number of full bathrooms, number of 1.5 bathrooms')
+	st.header('The ML models:')
+	st.markdown('* **Multivariate Linear Regression** ')
+	st.markdown('* **Extreme Gradient Boosting XGBClassifier** ')
 
 with modelTraining:
 	st.header('Estimate the price for a house with the following selected features:')
@@ -88,17 +88,28 @@ with modelTraining:
 	X=data[['area','beds','full_baths','1.5_baths']]
 	y=data['price']
 	# training set size = 80%  test size =20%
-	X_train, X_test, y_train, y_test = train_test_split(X,y,test_size=0.2)
+	X_train, X_test, y_train, y_test = train_test_split(X,y,test_size=0.2,random_state=42)
 
 	lr = LinearRegression() 
 	lr.fit(X_train,y_train)
-	predictions = lr.predict(X_test)
-	score = r2_score(y_test,predictions)
+	y_pred1 = lr.predict(X_test)
+	score = r2_score(y_test,y_pred1)
+	
+	xgb = XGBRegressor(n_jobs=-1,random_state=42)
+	xgb.fit(X_train, y_train)
+	y_pred = xgb.predict(X_test)
+	#pred = [round(value) for value in y_pred]
+	score2 = r2_score(y_test,y_pred)
+	# print("R squared score is %.2f%%" % (r2_score(y_test,y_pred)*100.0))
 
 	disp_col.subheader('The price of the house:')
-	disp_col.write(lr.predict([[n_area,n_beds,n_baths,n_half]]))
-	disp_col.subheader('R squared score of the model:')
+	disp_col.write(abs(lr.predict([[n_area,n_beds,n_baths,n_half]])))
+	disp_col.subheader('R squared score of the MLR model:')
 	disp_col.write(score)
+
+	disp_col.subheader('R squared score of XGBRegressor model:')
+	disp_col.write(score2)
+
 	#disp_col.subheader('Mean squared error of the model:')
 	#disp_col.write(mean_squared_error(y_test,predictions))
 	#disp_col.subheader('Mean absolute error of the model:')
