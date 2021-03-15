@@ -63,7 +63,6 @@ with dataset:
 	# reset index
 	# data = data.reset_index(drop=True)
 
-
 	# COMBINE column 'full_baths' and column '1.5_baths' into a new column 'num_baths':
 	data['num_baths']=data['full_baths']+data['1.5_baths'] + 0.5
 	# DROP columns 'full_baths' and '1.5_baths' out of data:
@@ -120,6 +119,7 @@ with modelTraining:
 	# CREATE TRAIN & TEST SETS: training size = 80%  test size =20%
 	X_train, X_test, y_train, y_test = train_test_split(X,y,test_size=0.2) #,random_state=42)
 
+	# TEST FOR TWO MODELS:
 	lr = LinearRegression() 
 	lr.fit(X_train,y_train)
 	y_pred1 = lr.predict(X_test)
