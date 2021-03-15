@@ -6,5 +6,6 @@ I collect data from online such as zillow, Redfin, Realtor, etc. There is no fea
 Therefore, area-price correlation is not so consistent. This effects to the performance of the model.
 
 Two different models (Multivaritate Linear Regression and Extreme Gradient Boosting) were applied for predicting house price.
+This app was deployed on Heroku.
 
 [You can reach the app here](https://sandiego-la-jolla-house-price.herokuapp.com/)
