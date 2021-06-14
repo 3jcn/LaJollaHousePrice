@@ -53,6 +53,7 @@ with header:
 with dataset:
 	st.header('La Jolla house price dataset Feb 2021')
 	st.text('Data was collected from online sites like Zillow, Redfin, Realtor, etc.')
+	st.write(data.shape)
 	data = get_data('LaJolla-02-2021.csv')
 
 	# PREPROCESSING DATA:
