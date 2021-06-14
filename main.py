@@ -52,9 +52,9 @@ with header:
 
 with dataset:
 	st.header('La Jolla house price dataset Feb 2021')
-	st.text('Data was collected from online sites like Zillow, Redfin, Realtor, etc.')
+	st.text('A small set of data was collected from online sites like Zillow, Redfin, Realtor, etc.')
 	data = get_data('LaJolla-02-2021.csv')
-	st.write(data.shape)
+	st.write("Rows x Columns:",data.shape)
 
 	# PREPROCESSING DATA:
 	# get NaN value: df.isna().sum()  
