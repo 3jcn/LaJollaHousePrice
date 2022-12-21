@@ -140,6 +140,7 @@ with modelTraining:
 
 	disp_col.subheader('R squared score of XGBRegressor model:')
 	disp_col.write(score2)
+	st.text("The scores are low because the collected dataset is pretty small.")
 
 	#disp_col.subheader('Mean squared error of the model:')
 	#disp_col.write(mean_squared_error(y_test,predictions))
