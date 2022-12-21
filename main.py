@@ -51,7 +51,7 @@ with header:
 	st.image(image,use_column_width=True)
 
 with dataset:
-	st.header('La Jolla house price dataset Feb 2021')
+	st.header('La Jolla house price dataset: Feb 2021')
 	st.text('A small set of data was collected from online sites like Zillow, Redfin, Realtor, etc.')
 	data = get_data('LaJolla-02-2021.csv')
 
