@@ -87,7 +87,7 @@ with dataset:
 	#scaler = RobustScaler(X) 
 	#X = scaler.fit_transform(X) 
 
-	st.write(data.head())
+	# st.write(data.head())
 	st.write("Rows x Columns:",data.shape)
 	st.subheader('Number of bedrooms distribution:')
 	price_list = pd.DataFrame(data['beds'].round().value_counts()).head(50)
