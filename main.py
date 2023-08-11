@@ -11,10 +11,10 @@ import warnings
 warnings.filterwarnings('ignore')
 
 
-header = st.beta_container()
-dataset = st.beta_container()
-features = st.beta_container()
-modelTraining = st.beta_container()
+header = st.container()
+dataset = st.container()
+features = st.container()
+modelTraining = st.container()
 
 st.markdown("""
 	<style>
@@ -111,7 +111,7 @@ with modelTraining:
 	# check min,max values for 'area', 'beds' and 'num_baths':
 	# data['area'].max()  data['beds'].max()  data['num_baths'].max
 
-	para_col,disp_col = st.beta_columns(2)
+	para_col,disp_col = st.columns(2)
 	n_area = para_col.slider('Area of the house (sq ft):',min_value=600,max_value=19000, value=2000)
 	n_beds = para_col.selectbox('Number of bedrooms:',options=[1,2,3,4,5,6,7,8],index=2)
 	n_baths = para_col.selectbox('Number of bathrooms:',options=[1,2,3,4,5,6,7,8],index=2)
