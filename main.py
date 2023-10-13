@@ -44,6 +44,7 @@ with header:
 	<h2 style="color:white; text-align:center;">Predicting House Price in La Jolla, San Diego, CA</h2>
 	</div>
 	"""
+	st.markdown("""** :red[Big Brother messed up my data...All of my apps are not working properly.] **""")
 	st.markdown(html_temp,unsafe_allow_html=True)
 	st.text('La Jolla is a beautiful hilly, seaside neighborhood within the city of San Diego. Do you wonder how much does it cost to live there?')
 	
